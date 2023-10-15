@@ -1,0 +1,48 @@
+﻿@model VehicleModel
+<h3>Cadastro de veículos</h3>
+<form asp-controller="Vehicles" asp-action="Add" method="post">
+    <div class="form-group">
+        <label for="vehicleType">Tipo de Veículo</label>
+        <select id="vehicleType" class="form-select" asp-for="VehicleType">
+            <option disable>Selecione o tipo de veículo</option>
+            <option value="0">Moto</option>
+            <option value="1">Carro</option>
+            <option value="2">Ônibus</option>
+            <option value="3">Caminhão</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="vehicleBrand">Marca do Veículo</label>
+        <select id="vehicleBrand" class="form-select" asp-for="VehicleBrand">
+            <option disable>Selecione a marca do veículo</option>
+
+            @foreach (var brand in Enum.GetValues(typeof(WebApplicationMVC.Business.Genericos.VehicleBrand)))
+            {
+                <option value="@brand">@brand.ToString()</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="vehicleModel">Modelo do Veículo</label>
+        <input type="text" id="vehicleModel" class="form-control" asp-for="VehicleName" placeholder="Digite o modelo.." />
+    </div>
+    <div class="form-group">
+        <label for="selectedYear">Ano do Veículo</label>
+        <select id="selectedYear" class="form-select" asp-for="SelectedYear">
+            <option disable>Selecione o ano do veículo</option>
+
+            @foreach (var year in WebApplicationMVC.Business.Genericos.VehicleYear.AnosDisponiveis)
+            {
+                <option value="@year">@year</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="licensePlate">Placa do Veículo</label>
+        <input type="text" id="licensePlate" class="form-control" asp-for="LicensePlate" placeholder="XXX-0X00" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary float-end">Salvar</button>
+    <a class="btn btn-secondary float-end" asp-controller="Vehicles" asp-action="Index">Voltar</a>
+</form>

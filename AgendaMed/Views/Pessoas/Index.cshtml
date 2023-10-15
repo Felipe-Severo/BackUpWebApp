@@ -1,0 +1,41 @@
+﻿@model VehiclesModel
+@*Bloco de código MVC*@
+@{
+    // Setar o título da página
+    ViewData["Title"] = "Veículos";
+}
+<div class="text-center">
+    <h3>Lista de veículos</h3>
+    <a type="button" class="btn btn-primary float-end" asp-controller="Vehicles" asp-action="Add">Incluir novo veículo</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo de veículo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Placa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var vehicle in Model.Vehicles)
+            {
+                <tr>
+                    <td>@vehicle.Id</td>
+                    <td>@vehicle.VehicleType.ToString()</td>
+                    <td>@vehicle.VehicleBrand.ToString()</td>
+                    <td>@vehicle.VehicleName</td>
+                    <td>@vehicle.SelectedYear</td>
+                    <td>@vehicle.LicensePlate</td>
+                    <td>
+                        <div>
+                            <a type="button" class="btn btn-warning" asp-route-id="@vehicle.Id" asp-controller="Vehicles" asp-action="Update">Editar</a>
+                            <a type="button" class="btn btn-danger" asp-route-id="@vehicle.Id" asp-controller="Vehicles" asp-action="Delete">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,7 @@
+﻿@model VehicleModel
+<h3>Confirmação de exclusão</h3>
+<form asp-controller="Vehicles" asp-action="Delete" method="post">
+    <p>Você está prestes a realizar um operação de exclusão no sistema, deseja continuar?</p>
+    <a type="button" class="btn btn-danger" asp-controller="Vehicles" asp-action="Index">Não</a>
+    <button type="submit" class="btn btn-primary">Sim</button>
+</form>
